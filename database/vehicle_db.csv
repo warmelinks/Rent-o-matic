@@ -1,8 +1,8 @@
-ID,Type,Model,Base_cost,Fuel_cost,Mileage,Available
-101,Car,Tesla S,180,10,10000,1
-102,Car,Opel Zafira,100,10,80000,1
-103,Car,Opel Zafira,100,10,85000,
-201,Motor boat,Lagoon 40,30,8,3000,1
-301,Bicycle,Gazelle, 5, 0, 150, 1
-302,Bicycle,Gazelle, 5, 0, 2000, 1
-303,Bicycle,Gazelle, 5, 0, 10, 1
+ID,Type,Model,Base_cost,Fuel_cost,Mileage,Available,Description
+101,Car,Tesla S,180,10,10000,1,Tesla's all-electric powertrain delivers unparalleled performance in all weather conditions – with Dual Motor All-Wheel Drive; adaptive air suspension and ludicrous acceleration. Model S sets an industry standard for performance and safety.
+102,Car,Opel Zafira,100,10,80000,1,De geheel nieuwe Opel Zafira is de ultieme auto voor personenvervoer. Om die reden is er bij de Zafira extra veel aandacht gegeven aan het onderdeel veiligheid. De Zafira is uitgerust met diverse rijassistentiesystemen.
+103,Car,Opel Zafira,100,10,85000,De geheel nieuwe Opel Zafira is de ultieme auto voor personenvervoer. Om die reden is er bij de Zafira extra veel aandacht gegeven aan het onderdeel veiligheid. De Zafira is uitgerust met diverse rijassistentiesystemen.
+201,Motor boat,Lagoon 40,30,8,3000,1,Lagoon Yachts has led the way for cruising catamarans and the new 40 is another trailblazing example.
+301,Bicycle,Gazelle, 5, 0, 150, 1,De Gazelle Ultimate C8+ HMB fietst net zoals hij eruit ziet: super comfortabel en met een sportieve uitstraling. Dankzij het gunstige zwaartepunt en de stijfheid van het frame fiets je heerlijk stabiel. Niet eerder was sportief fietsen zó comfortabel. Designed for freedom
+302,Bicycle,Gazelle, 5, 0, 2000, 1,De Gazelle Ultimate C8+ HMB fietst net zoals hij eruit ziet: super comfortabel en met een sportieve uitstraling. Dankzij het gunstige zwaartepunt en de stijfheid van het frame fiets je heerlijk stabiel. Niet eerder was sportief fietsen zó comfortabel. Designed for freedom
+303,Bicycle,Gazelle, 5, 0, 10, 1,De Gazelle Ultimate C8+ HMB fietst net zoals hij eruit ziet: super comfortabel en met een sportieve uitstraling. Dankzij het gunstige zwaartepunt en de stijfheid van het frame fiets je heerlijk stabiel. Niet eerder was sportief fietsen zó comfortabel. Designed for freedom

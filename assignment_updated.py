@@ -5,25 +5,24 @@ import pandas
 class Vehicle(object):
     def __init__(self, id_num, type_name, model, 
                  base_cost, fuel_cost, 
-                 mileage, available):
-        self.id_num    = id_num
-        self.type_name = type_name
-        self.model     = model
-        self.base_cost = base_cost
-        self.fuel_cost = fuel_cost
-        self.mileage   = mileage
-        self.available = available
+                 mileage, available, description):
+        self.id_num      = id_num
+        self.type_name   = type_name
+        self.model       = model
+        self.base_cost   = base_cost
+        self.fuel_cost   = fuel_cost
+        self.mileage     = mileage
+        self.available   = available
+        self.description = description
 
     def info(self):
         print "Info about the " + self.model + " " + self.type_name + " (ID: " + str(self.id_num) + "):"
         print "Cost: E" + str(self.base_cost) +",- + E" + \
         str(self.fuel_cost) + ",- per hour after the first two hours."
-        print "Available: ", "Yes" if self.available else "No" , "\n\n"
-
+        print "Available: ", "Yes" if self.available else "No", "\n" 
 
     def calculate_rental_cost(self, hours):
         return self.base_cost + max(0, self.fuel_cost * (hours - 2))
-
 
 def get_available(vehicles, model):
     count = 0
@@ -38,6 +37,7 @@ def provide_change(cost, payment):
     change = payment - cost
     coins  = []
     euro_options = [500, 200, 100, 50, 20, 10, 5, 2, 1]
+    
     if change < 0:
         print "You did not provide enough payment."
         sleep(2)
@@ -49,48 +49,16 @@ def provide_change(cost, payment):
                     coins.append(option)
                     change -= option
                     break
+    
     print "Your change is as follows:", coins
     print "Press [ENTER] to return."
     raw_input(">> ")
     return True
 
-# Load vehicles from csv file to get current inventory
-def load_database(path):
-    # Create list to store our current inventory
-    inventory = []
-    # Read CSV using pandas
-    vehicles = pandas.read_csv(path, converters = {
-                "ID"       : int,
-                "Type"     : str, 
-                "Model"    : str, 
-                "Base_cost": int, 
-                "Fuel_cost": int, 
-                "Mileage"  : int,
-                "Available": bool })
-    
-    # Create objects based on database
-    for _, data in vehicles.iterrows():
-        inventory.append(Vehicle(
-            data["ID"],
-            data["Type"],
-            data["Model"],
-            data["Base_cost"], 
-            data["Fuel_cost"],
-            data["Mileage"],
-            data["Available"]))
-    return inventory
-
-
-def print_help():
-    system('clear')
-    print "Welcome to Rent-o-Matic!"
-    print "This is a generic help message..."
-    raw_input("Press [ENTER] to continue.")
 
 def parse_input(vehicles):
     while True:
-        system('clear')
-        print "Welcome to Rent-o-matic!"
+        print_header()
         print "What would you like to do?"
         print "(1): View all vehicles."
         print "(2): View more info on a specific Vehicle."
@@ -121,6 +89,7 @@ def parse_input(vehicles):
             sleep(2)
 
 def view_all_vehicles(vehicles):
+    print_header()
     for vehicle in vehicles:
         vehicle.info()
     raw_input("Press [ENTER] to continue.")
@@ -128,9 +97,11 @@ def view_all_vehicles(vehicles):
 def print_vehicle(vehicles, model):
     for vehicle in vehicles:
         if vehicle.model == model:
-            system('clear')
-            print "Welcome to Rent-o-matic!"
+            print_header()
             vehicle.info()
+            print "----------------"
+            print vehicle.description
+            print "----------------"
             raw_input("Press [ENTER] to continue.")
             return
 
@@ -144,13 +115,9 @@ def print_vehicle_options():
 
 def view_specific_vehicle(vehicles, menu_dict):
     while True:
-        system('clear')
-        print "Welcome to Rent-o-Matic!"
+        print_header()
         print "What vehicle would you like more information on?"
         print_vehicle_options()
-
-
-
         user_input = raw_input(">> ")
         if user_input in menu_dict.keys():
             print_vehicle(vehicles, menu_dict[user_input])
@@ -164,15 +131,15 @@ def view_specific_vehicle(vehicles, menu_dict):
 
 def rent_vehicle(vehicles, model):
     while True:
-        system('clear')
-        print "Welcome to Rent-o-Matic!"    
-        
+        print_header() 
         print "How many " + model + "s would you like to rent?"
+        
         num_rentals = int(raw_input(">> "))
         if num_rentals <= 0:
             print "You can only rent a positive, nonzero number of vehicles."
             sleep(2)
             break
+        
         currently_available = get_available(vehicles, model)
         if num_rentals > currently_available:
             print "Not enough rentals available. Currently available:", currently_available
@@ -186,6 +153,7 @@ def rent_vehicle(vehicles, model):
             if vehicle.model == model:
                 total_cost = num_rentals * vehicle.calculate_rental_cost(num_hours)
                 break
+
         print "Total cost: E" + str(total_cost) + ",-. Please insert money: "
         money_inserted = int(raw_input(">> "))
         if provide_change(total_cost, money_inserted):
@@ -199,14 +167,9 @@ def rent_vehicle(vehicles, model):
             update_database(vehicles)
             break
 
-# NYI. Updates database file (CSV)
-def update_database(vehicles):
-    pass
-
 def rent_vehicle_menu(vehicles, menu_dict):
     while True:
-        system('clear')
-        print "Welcome to Rent-o-Matic!"
+        print_header()
         print "Which vehicle would you like to rent?"
         print_vehicle_options()
 
@@ -220,15 +183,26 @@ def rent_vehicle_menu(vehicles, menu_dict):
         else:
             print "Please input either (1), (2), (3), (4), (5), or (9)"
             sleep(2)
+
+# NYI. Updates database file (CSV)
+def update_database(vehicles):
     pass
 
 def return_vehicle(vehicles):
     pass
 
+def print_header():
+    system('clear')
+    print "Welcome to Rent-o-Matic!"
+
+def print_help():
+    print_header()    
+    print "This is a generic help message..."
+    raw_input("Press [ENTER] to continue.")
+
 def rent_o_matic(vehicles):
     while True:
-        system('clear')
-        print "Welcome to Rent-o-Matic!"
+        print_header()
         print "Please select one of the following: "
         print "(1): Get Started."
         print "(9): Help."
@@ -242,6 +216,33 @@ def rent_o_matic(vehicles):
             print "Please input either (1), or (9)."
             sleep(2)
 
+# Load vehicles from csv file to get current inventory
+def load_database(path):
+    # Create list to store our current inventory
+    inventory = []
+    # Read CSV using pandas
+    vehicles = pandas.read_csv(path, converters = {
+                "ID"         : int,
+                "Type"       : str, 
+                "Model"      : str, 
+                "Base_cost"  : int, 
+                "Fuel_cost"  : int, 
+                "Mileage"    : int,
+                "Available"  : bool, 
+                "Description": str })
+    
+    # Create objects based on database
+    for _, data in vehicles.iterrows():
+        inventory.append(Vehicle(
+            data["ID"],
+            data["Type"],
+            data["Model"],
+            data["Base_cost"], 
+            data["Fuel_cost"],
+            data["Mileage"],
+            data["Available"],
+            data["Description"]))
+    return inventory
 
 if __name__ == "__main__":
     vehicles = load_database('database/vehicle_db.csv')
