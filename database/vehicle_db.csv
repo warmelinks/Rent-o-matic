@@ -1,5 +1,8 @@
-Type,Model,Base_cost,Fuel_cost,Mileage,Available
-Car,Tesla S,180,10,10000,1
-Car,Opel Zafira,100,10,80000,1
-Car,Opel Zafira,100,10,80000,
-MotorBoat,Lagoon 40,30,8,3000,1
+ID,Type,Model,Base_cost,Fuel_cost,Mileage,Available
+101,Car,Tesla S,180,10,10000,1
+102,Car,Opel Zafira,100,10,80000,1
+103,Car,Opel Zafira,100,10,85000,
+201,Motor boat,Lagoon 40,30,8,3000,1
+301,Bicycle,Gazelle, 5, 0, 150, 1
+302,Bicycle,Gazelle, 5, 0, 2000, 1
+303,Bicycle,Gazelle, 5, 0, 10, 1
