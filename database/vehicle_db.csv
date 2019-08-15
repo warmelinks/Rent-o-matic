@@ -1,0 +1,5 @@
+Type,Model,Base_cost,Fuel_cost,Mileage,Available
+Car,Tesla S,180,10,10000,1
+Car,Opel Zafira,100,10,80000,1
+Car,Opel Zafira,100,10,80000,
+MotorBoat,Lagoon 40,30,8,3000,1
